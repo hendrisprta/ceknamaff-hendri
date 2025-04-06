@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Cek Nama Free Fire</title>
+</head>
+<body>
+  <h1>Cek Nama Akun Free Fire</h1>
+  <input type="text" id="gameId" placeholder="Masukkan Game ID" />
+  <button onclick="cekNama()">Cek Nama</button>
+  <p id="hasil"></p>
+
+  <script>
+    async function cekNama() {
+      const gameId = document.getElementById("gameId").value;
+      const hasil = document.getElementById("hasil");
+
+      try {
+        const res = await fetch(`/api/ff?gameId=${gameId}`);
+        const data = await res.json();
+
+        if (data?.data?.username) {
+          hasil.innerText = `Nama Akun: ${data.data.username}`;
+        } else {
+          hasil.innerText = "Tidak ditemukan atau response kosong.";
+        }
+      } catch (err) {
+        hasil.innerText = "Terjadi kesalahan: " + err.message;
+      }
+    }
+  </script>
+</body>
+</html>
