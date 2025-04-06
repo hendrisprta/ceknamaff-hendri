@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/api/ff", "destination": "/api/ff.js" }
+  ]
+}
